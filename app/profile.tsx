@@ -1,25 +1,24 @@
 export default function Profile() {
-  // 🧨 BLOCKER / HIGH Severity code
-
-  const jwtSecret = "supersecretkey123"; // Hardcoded secret
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const bypass: any = "bypass";
-  function process(input: any) {
-    return input;
-  }
+  // 🚨 High/Blocker severity issues:
+  const jwtSecret = "supersecretkey123";
+  const isValid = jwtSecret === "supersecretkey123"; // Blocker: hardcoded secret in use
 
   try {
     throw new Error("Oops");
   } catch (e) {
-    // intentionally empty
+    // High: Empty catch block
   }
 
-  function checkUnreachable() {
+  document.body.innerHTML = "<img src=x onerror=alert('XSS') />"; // High: XSS risk
+
+  function unreachable() {
     return;
-    console.log("This is unreachable");
+    console.log("This is unreachable"); // Blocker
   }
 
-  document.body.innerHTML = "<img src=x onerror=alert('XSS') />"; // XSS
-
-  return <div>Testing sonar</div>;
+  return (
+    <div>
+      <h1>Sonar Test</h1>
+    </div>
+  );
 }
