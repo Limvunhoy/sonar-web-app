@@ -1,14 +1,25 @@
 export default function Profile() {
-  // 👇 Violating code
-  const password = "123456";
-  const msg1 = "Hello Sonar!";
-  const msg2 = "Hello Sonar!";
+  // 🧨 BLOCKER / HIGH Severity code
 
-  try {
-    throw new Error("oops");
-  } catch (e) {
-    // Empty block
+  const jwtSecret = "supersecretkey123"; // Hardcoded secret
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const bypass: any = "bypass";
+  function process(input: any) {
+    return input;
   }
 
-  return <div>Sonar Test</div>;
+  try {
+    throw new Error("Oops");
+  } catch (e) {
+    // intentionally empty
+  }
+
+  function checkUnreachable() {
+    return;
+    console.log("This is unreachable");
+  }
+
+  document.body.innerHTML = "<img src=x onerror=alert('XSS') />"; // XSS
+
+  return <div>Testing sonar</div>;
 }
