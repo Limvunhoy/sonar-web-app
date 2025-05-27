@@ -1,0 +1,6 @@
+projectKey=sonar-web-app
+serverUrl=http://202.79.29.108:9000
+serverVersion=25.5.0.107428
+dashboardUrl=http://202.79.29.108:9000/dashboard?id=sonar-web-app
+ceTaskId=e1761d6e-5850-4a75-9535-1449f3da6b6d
+ceTaskUrl=http://202.79.29.108:9000/api/ce/task?id=e1761d6e-5850-4a75-9535-1449f3da6b6d
