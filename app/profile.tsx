@@ -1,24 +1,34 @@
+"use client";
+
+import { useEffect } from "react";
+
 export default function Profile() {
-  // 🚨 High/Blocker severity issues:
+  // 🚨 Blocker: Hardcoded secret in use
   const jwtSecret = "supersecretkey123";
-  const isValid = jwtSecret === "supersecretkey123"; // Blocker: hardcoded secret in use
+  if (jwtSecret === "supersecretkey123") {
+    console.log("Using hardcoded secret");
+  }
+
+  useEffect(() => {
+    // 🚨 High: XSS vulnerability
+    document.body.innerHTML = "<img src=x onerror=alert('XSS') />";
+  }, []);
 
   try {
     throw new Error("Oops");
   } catch (e) {
-    // High: Empty catch block
+    // 🚨 High: empty catch block — swallowed exception
   }
 
-  document.body.innerHTML = "<img src=x onerror=alert('XSS') />"; // High: XSS risk
-
-  function unreachable() {
+  function unreachableCodeExample() {
     return;
-    console.log("This is unreachable"); // Blocker
+    console.log("🚨 Blocker: unreachable code"); // unreachable
   }
 
   return (
-    <div>
-      <h1>Sonar Test</h1>
+    <div className="p-8">
+      <h1>SonarQube Test Page</h1>
+      <p>This page contains intentional code smells and security issues.</p>
     </div>
   );
 }
